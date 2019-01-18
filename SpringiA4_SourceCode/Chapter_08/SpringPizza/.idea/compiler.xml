@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <excludeFromCompile>
+      <file url="file://$PROJECT_DIR$/src/main/java/com/springinaction/pizza/HomeController.java" />
+    </excludeFromCompile>
+    <bytecodeTargetLevel>
+      <module name="SpringPizza_main" target="1.7" />
+      <module name="SpringPizza_test" target="1.7" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

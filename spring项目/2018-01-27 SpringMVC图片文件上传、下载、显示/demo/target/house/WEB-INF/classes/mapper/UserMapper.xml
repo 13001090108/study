@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.uzipi.dao.UserMapper">
+  <resultMap id="BaseResultMap" type="com.uzipi.entity.User">
+    <id column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
+    <result column="user_tel" jdbcType="VARCHAR" property="userTel" />
+    <result column="user_password" jdbcType="VARCHAR" property="userPassword" />
+    <result column="user_pic" jdbcType="VARCHAR" property="userPic" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    user_id, user_name, user_tel, user_password, user_pic
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_user
+    where user_id = #{userId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_user
+    where user_id = #{userId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.uzipi.entity.User">
+    insert into t_user (user_id, user_name, user_tel, 
+      user_password, user_pic)
+    values (#{userId,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{userTel,jdbcType=VARCHAR}, 
+      #{userPassword,jdbcType=VARCHAR}, #{userPic,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.uzipi.entity.User">
+    insert into t_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="userName != null">
+        user_name,
+      </if>
+      <if test="userTel != null">
+        user_tel,
+      </if>
+      <if test="userPassword != null">
+        user_password,
+      </if>
+      <if test="userPic != null">
+        user_pic,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="userName != null">
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userTel != null">
+        #{userTel,jdbcType=VARCHAR},
+      </if>
+      <if test="userPassword != null">
+        #{userPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="userPic != null">
+        #{userPic,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.uzipi.entity.User">
+    update t_user
+    <set>
+      <if test="userName != null">
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userTel != null">
+        user_tel = #{userTel,jdbcType=VARCHAR},
+      </if>
+      <if test="userPassword != null">
+        user_password = #{userPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="userPic != null">
+        user_pic = #{userPic,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where user_id = #{userId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.uzipi.entity.User">
+    update t_user
+    set user_name = #{userName,jdbcType=VARCHAR},
+      user_tel = #{userTel,jdbcType=VARCHAR},
+      user_password = #{userPassword,jdbcType=VARCHAR},
+      user_pic = #{userPic,jdbcType=VARCHAR}
+    where user_id = #{userId,jdbcType=INTEGER}
+  </update>
+</mapper>
